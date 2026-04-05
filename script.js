@@ -93,22 +93,22 @@ function applyData(d) {
 
 async function loadData() {
   try {
-    const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-      headers: {
-        "X-Master-Key": API_KEY
-      }
-    });
+    const res = await fetch("./links.json");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}`);
-    }
-
-    const json = await res.json();
-    const data = json.record;
-
+    const data = await res.json();
     applyData(data);
   } catch (err) {
-    console.error("❌ Gagal memuat data:", err);
+    console.error("❌ Gagal memuat links.json:", err);
+    elLinks.innerHTML = `
+      <div class="empty-links">
+        ❌ Gagal memuat data
+      </div>
+    `;
+  }
+}
+
+loadData();
 
     elLinks.innerHTML = `
       <div class="empty-links">
