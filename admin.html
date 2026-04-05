@@ -5,456 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel | REKBER.TOKOGAME</title>
   <meta name="theme-color" content="#ff1e1e" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
-
-    :root {
-      --red: #ff2b2b;
-      --red-2: #ff1e1e;
-      --dark: #090000;
-      --panel: rgba(25, 0, 0, 0.92);
-      --panel-2: rgba(40, 0, 0, 0.82);
-      --border: rgba(255, 43, 43, 0.35);
-      --glow: rgba(255, 43, 43, 0.28);
-      --text: #ffffff;
-      --muted: #ffbdbd;
-      --input: rgba(10, 0, 0, 0.95);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top, rgba(255, 30, 30, 0.18), transparent 26%),
-        linear-gradient(180deg, #0a0000, #140000 40%, #050000 100%);
-      min-height: 100vh;
-    }
-
-    .grid {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .15;
-      background-image:
-        linear-gradient(rgba(255, 40, 40, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 40, 40, 0.06) 1px, transparent 1px);
-      background-size: 38px 38px;
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 24px 16px 60px;
-    }
-
-    .topbar {
-      text-align: center;
-      margin-bottom: 18px;
-      padding: 18px 12px;
-      border-bottom: 1px solid rgba(255, 43, 43, 0.25);
-    }
-
-    .topbar h1 {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 30px;
-      letter-spacing: 1px;
-    }
-
-    .topbar p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: 1px;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 18px;
-      box-shadow: 0 0 30px var(--glow);
-      margin-bottom: 18px;
-    }
-
-    .card h2 {
-      margin: 0 0 16px;
-      color: var(--red);
-      font-size: 22px;
-    }
-
-    .field {
-      margin-bottom: 14px;
-    }
-
-    .field label {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 7px;
-      color: #ffd9d9;
-      font-weight: 600;
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      border: 1px solid rgba(255, 43, 43, 0.35);
-      background: var(--input);
-      color: #fff;
-      border-radius: 14px;
-      padding: 14px 14px;
-      outline: none;
-      font-size: 14px;
-    }
-
-    .field textarea {
-      min-height: 180px;
-      resize: vertical;
-      line-height: 1.5;
-      font-family: monospace;
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-color: rgba(255, 90, 90, 0.95);
-      box-shadow: 0 0 0 3px rgba(255, 43, 43, 0.10);
-    }
-
-    .link-box {
-      border: 1px solid rgba(255, 43, 43, 0.18);
-      background: var(--panel-2);
-      border-radius: 18px;
-      padding: 14px;
-      margin-bottom: 14px;
-    }
-
-    .link-box-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-      font-weight: 700;
-      color: #ffe1e1;
-    }
-
-    .btn-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .btn {
-      border: none;
-      cursor: pointer;
-      border-radius: 14px;
-      padding: 14px 14px;
-      font-weight: 800;
-      font-size: 14px;
-      color: #fff;
-      background: linear-gradient(180deg, #ff2b2b, #8d0000);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
-    }
-
-    .btn.secondary {
-      background: linear-gradient(180deg, #260000, #120000);
-      border: 1px solid rgba(255, 43, 43, 0.3);
-    }
-
-    .btn.small {
-      width: auto;
-      padding: 10px 12px;
-      font-size: 12px;
-    }
-
-    .status {
-      margin-top: 12px;
-      color: #ffc1c1;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .hint {
-      font-size: 12px;
-      color: #ffb3b3;
-      line-height: 1.6;
-      margin-top: 10px;
-    }
-
-    .json-output {
-      white-space: pre-wrap;
-      word-break: break-word;
-      font-family: monospace;
-      font-size: 13px;
-      line-height: 1.6;
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 43, 43, 0.25);
-      border-radius: 16px;
-      padding: 14px;
-      min-height: 160px;
-      color: #ffe3e3;
-    }
-
-    @media (max-width: 640px) {
-      .btn-row {
-        grid-template-columns: 1fr;
-      }
-
-      .topbar h1 {
-        font-size: 24px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="admin.css" />
 </head>
 <body>
-  <div class="grid"></div>
+  <div class="bg"></div>
 
-  <main class="wrap">
-    <div class="topbar">
+  <main class="admin-wrap">
+    <section class="panel">
       <h1>Admin Panel</h1>
-      <p>REKBER.TOKOGAME</p>
-    </div>
-
-    <section class="card">
-      <h2>Pengaturan Brand</h2>
+      <p class="sub">Edit link dan brand langsung dari HP</p>
 
       <div class="field">
         <label for="title">Judul Brand</label>
-        <input id="title" type="text" placeholder="REKBER.TOKOGAME">
+        <input id="title" type="text" placeholder="REKBER.TOKOGAME" />
       </div>
 
       <div class="field">
-        <label for="subtitle">Subtitle / Deskripsi</label>
-        <input id="subtitle" type="text" placeholder="Trusted Gaming & Digital Escrow">
+        <label for="subtitle">Subtitle</label>
+        <input id="subtitle" type="text" placeholder="Trusted Gaming & Digital Escrow" />
       </div>
 
       <div class="field">
-        <label for="avatar">Avatar / Logo URL</label>
-        <input id="avatar" type="text" placeholder="https://...">
+        <label for="avatar">Avatar URL</label>
+        <input id="avatar" type="text" placeholder="https://..." />
       </div>
 
       <div class="field">
         <label for="background">Background URL</label>
-        <input id="background" type="text" placeholder="https://...">
+        <input id="background" type="text" placeholder="https://..." />
+      </div>
+
+      <div class="actions-top">
+        <button onclick="saveAll()">Simpan Brand</button>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Daftar Link</h2>
-      <div id="linksEditor"></div>
-      <button id="addLinkBtn" class="btn secondary" type="button">+ Tambah Link</button>
-
-      <div class="hint">
-        Isi nama link, URL, dan icon URL. Kalau icon kosong juga gapapa.
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Aksi</h2>
-      <div class="btn-row">
-        <button id="loadBtn" class="btn secondary" type="button">Load links.json</button>
-        <button id="generateBtn" class="btn" type="button">Generate JSON</button>
-        <button id="copyBtn" class="btn secondary" type="button">Copy JSON</button>
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Daftar Link</h2>
+        <button class="add-btn" onclick="addLink()">+ Tambah Link</button>
       </div>
 
-      <div id="status" class="status">Siap dipakai.</div>
-    </section>
-
-    <section class="card">
-      <h2>Hasil JSON</h2>
-      <div id="jsonOutput" class="json-output"></div>
-      <div class="hint">
-        Setelah klik <b>Generate JSON</b>, copy hasil di sini lalu paste ke file <b>links.json</b> di GitHub.
-      </div>
+      <div id="links"></div>
     </section>
   </main>
 
-  <script>
-    const defaultData = {
-      title: "REKBER.TOKOGAME",
-      subtitle: "Trusted Gaming & Digital Escrow",
-      avatar: "",
-      background: "",
-      links: [
-        {
-          label: "WhatsApp Admin",
-          url: "https://wa.me/6281234567890",
-          icon: "https://cdn-icons-png.flaticon.com/512/733/733585.png"
-        },
-        {
-          label: "Telegram Official",
-          url: "https://t.me/usernamekamu",
-          icon: "https://cdn-icons-png.flaticon.com/512/2111/2111646.png"
-        }
-      ]
-    };
+  <div id="toast" class="toast"></div>
 
-    const titleInput = document.getElementById("title");
-    const subtitleInput = document.getElementById("subtitle");
-    const avatarInput = document.getElementById("avatar");
-    const backgroundInput = document.getElementById("background");
-    const linksEditor = document.getElementById("linksEditor");
-    const addLinkBtn = document.getElementById("addLinkBtn");
-    const loadBtn = document.getElementById("loadBtn");
-    const generateBtn = document.getElementById("generateBtn");
-    const copyBtn = document.getElementById("copyBtn");
-    const jsonOutput = document.getElementById("jsonOutput");
-    const statusBox = document.getElementById("status");
-
-    let appData = structuredClone(defaultData);
-
-    function setStatus(text) {
-      statusBox.textContent = text;
-    }
-
-    function escapeAttr(value) {
-      return String(value || "")
-        .replaceAll("&", "&amp;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;");
-    }
-
-    function renderEditor() {
-      linksEditor.innerHTML = "";
-
-      appData.links.forEach((link, index) => {
-        const box = document.createElement("div");
-        box.className = "link-box";
-        box.innerHTML = `
-          <div class="link-box-title">
-            <span>Link ${index + 1}</span>
-            <button class="btn secondary small" type="button" data-remove="${index}">Hapus</button>
-          </div>
-
-          <div class="field">
-            <label>Nama Link</label>
-            <input type="text" data-key="label" data-index="${index}" value="${escapeAttr(link.label)}" placeholder="WhatsApp Admin">
-          </div>
-
-          <div class="field">
-            <label>URL Link</label>
-            <input type="text" data-key="url" data-index="${index}" value="${escapeAttr(link.url)}" placeholder="https://wa.me/...">
-          </div>
-
-          <div class="field">
-            <label>Icon URL</label>
-            <input type="text" data-key="icon" data-index="${index}" value="${escapeAttr(link.icon)}" placeholder="https://...png">
-          </div>
-        `;
-
-        linksEditor.appendChild(box);
-      });
-
-      linksEditor.querySelectorAll("input").forEach((input) => {
-        input.addEventListener("input", (e) => {
-          const index = Number(e.target.dataset.index);
-          const key = e.target.dataset.key;
-          appData.links[index][key] = e.target.value;
-          setStatus("Ada perubahan belum di-generate.");
-        });
-      });
-
-      linksEditor.querySelectorAll("[data-remove]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const index = Number(btn.dataset.remove);
-          appData.links.splice(index, 1);
-          renderEditor();
-          setStatus("Link dihapus.");
-        });
-      });
-    }
-
-    function fillForm() {
-      titleInput.value = appData.title || "";
-      subtitleInput.value = appData.subtitle || "";
-      avatarInput.value = appData.avatar || "";
-      backgroundInput.value = appData.background || "";
-      renderEditor();
-    }
-
-    function collectForm() {
-      appData.title = titleInput.value.trim();
-      appData.subtitle = subtitleInput.value.trim();
-      appData.avatar = avatarInput.value.trim();
-      appData.background = backgroundInput.value.trim();
-    }
-
-    function generateJson() {
-      collectForm();
-      const result = JSON.stringify(appData, null, 2);
-      jsonOutput.textContent = result;
-      setStatus("JSON berhasil dibuat. Tinggal copy lalu paste ke links.json.");
-    }
-
-    async function loadLinksJson() {
-      try {
-        const res = await fetch("./links.json");
-        if (!res.ok) throw new Error("Gagal load links.json");
-        const data = await res.json();
-
-        appData = {
-          title: data.title || "",
-          subtitle: data.subtitle || "",
-          avatar: data.avatar || "",
-          background: data.background || "",
-          links: Array.isArray(data.links) ? data.links : []
-        };
-
-        fillForm();
-        generateJson();
-        setStatus("links.json berhasil dimuat.");
-      } catch (err) {
-        console.error(err);
-        setStatus("Gagal load links.json. Cek file links.json dulu.");
-      }
-    }
-
-    async function copyJson() {
-      const text = jsonOutput.textContent.trim();
-      if (!text) {
-        setStatus("Belum ada JSON untuk dicopy.");
-        return;
-      }
-
-      try {
-        await navigator.clipboard.writeText(text);
-        setStatus("JSON berhasil dicopy.");
-      } catch (err) {
-        console.error(err);
-        setStatus("Gagal copy otomatis. Copy manual dari kotak hasil JSON.");
-      }
-    }
-
-    titleInput.addEventListener("input", () => setStatus("Ada perubahan belum di-generate."));
-    subtitleInput.addEventListener("input", () => setStatus("Ada perubahan belum di-generate."));
-    avatarInput.addEventListener("input", () => setStatus("Ada perubahan belum di-generate."));
-    backgroundInput.addEventListener("input", () => setStatus("Ada perubahan belum di-generate."));
-
-    addLinkBtn.addEventListener("click", () => {
-      appData.links.push({
-        label: "Link Baru",
-        url: "https://",
-        icon: ""
-      });
-      renderEditor();
-      setStatus("Link baru ditambahkan.");
-    });
-
-    loadBtn.addEventListener("click", loadLinksJson);
-    generateBtn.addEventListener("click", generateJson);
-    copyBtn.addEventListener("click", copyJson);
-
-    fillForm();
-    generateJson();
-  </script>
+  <script src="admin.js"></script>
 </body>
 </html>
