@@ -1,3 +1,12 @@
+// =======================================
+// REKBER.TOKOGAME - LANDING PAGE SCRIPT
+// =======================================
+
+// ====== GANTI PUNYA KAMU ======
+const BIN_ID = "69d1f30236566621a87e15a8";
+const API_KEY = "PASTE_API_KEY_KAMU_DI_SINI";
+// ==============================
+
 const elTitle = document.getElementById("title");
 const elSubtitle = document.getElementById("subtitle");
 const elAvatar = document.getElementById("avatar");
@@ -5,10 +14,6 @@ const elLinks = document.getElementById("links");
 const elBgImage = document.getElementById("bgImage");
 const elNoticeBrand = document.getElementById("noticeBrand");
 const elFooterBrand = document.getElementById("footerBrand");
-
-if (!elTitle || !elSubtitle || !elAvatar || !elLinks) {
-  console.error("❌ Element HTML tidak lengkap");
-}
 
 function escapeHtml(str) {
   return String(str || "")
@@ -44,7 +49,7 @@ function renderLinks(links) {
 
     a.innerHTML = `
       ${iconHtml}
-      <span>${escapeHtml(link.label || link.title || "Link")}</span>
+      <span>${escapeHtml(link.label || "Link")}</span>
     `;
 
     a.style.opacity = "0";
@@ -62,7 +67,6 @@ function applyData(d) {
   if (d.title) {
     elTitle.textContent = d.title;
     document.title = `${d.title} | Trusted Gaming Rekber`;
-
     if (elNoticeBrand) elNoticeBrand.textContent = d.title;
     if (elFooterBrand) elFooterBrand.textContent = d.title;
   }
@@ -75,7 +79,7 @@ function applyData(d) {
     elAvatar.src = d.avatar;
   }
 
-  if (d.background && elBgImage) {
+  if (d.background) {
     elBgImage.style.backgroundImage = `url("${d.background}")`;
   }
 
@@ -84,13 +88,18 @@ function applyData(d) {
 
 async function loadData() {
   try {
-    const res = await fetch("./links.json");
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+      headers: {
+        "X-Master-Key": API_KEY
+      }
+    });
+
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-    const data = await res.json();
-    applyData(data);
+    const json = await res.json();
+    applyData(json.record);
   } catch (err) {
-    console.error("❌ Gagal memuat links.json:", err);
+    console.error("❌ Gagal memuat data:", err);
     elLinks.innerHTML = `
       <div class="empty-links">
         ❌ Gagal memuat data
