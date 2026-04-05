@@ -4,8 +4,8 @@
 // =======================================
 
 // ====== GANTI PUNYA KAMU ======
-const BIN_ID = "6991b633d0ea881f40bc22eb";
-const API_KEY = "$2a$10$CRpUuQhcfh0vNYFxICLlwO7LrdzbWhCKwXJKD44is4DkVq8SjXv8G";
+const BIN_ID = "69d1f30236566621a87e15a8";
+const API_KEY = "$2a$10$CLLq1Bg7g2u726GLpRCVUuKOBsg/roXfp2eyTLehLpC241DeevMoG";
 // ==============================
 
 // ELEMENTS (PASTI ADA DI HTML)
