@@ -1,6 +1,5 @@
 // =======================================
-// REKBER.TOKOGAME - GAMING CYBER SCRIPT
-// Compatible with HERO HTML + CYBER CSS
+// REKBER.TOKOGAME - LANDING PAGE SCRIPT
 // =======================================
 
 // ====== GANTI PUNYA KAMU ======
@@ -8,114 +7,117 @@ const BIN_ID = "69d1f30236566621a87e15a8";
 const API_KEY = "$2a$10$CLLq1Bg7g2u726GLpRCVUuKOBsg/roXfp2eyTLehLpC241DeevMoG";
 // ==============================
 
-// ELEMENTS (PASTI ADA DI HTML)
-const elTitle   = document.getElementById("title");
-const elSubtitle= document.getElementById("subtitle");
-const elAvatar  = document.getElementById("avatar");
-const elLinks   = document.getElementById("links");
+const elTitle = document.getElementById("title");
+const elSubtitle = document.getElementById("subtitle");
+const elAvatar = document.getElementById("avatar");
+const elLinks = document.getElementById("links");
+const elBgImage = document.getElementById("bgImage");
+const elNoticeBrand = document.getElementById("noticeBrand");
+const elFooterBrand = document.getElementById("footerBrand");
 
-// SAFETY CHECK
 if (!elTitle || !elSubtitle || !elAvatar || !elLinks) {
   console.error("❌ Element HTML tidak lengkap");
 }
 
-// FETCH JSONBIN
-fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-  headers: {
-    "X-Master-Key": API_KEY
-  }
-})
-.then(res => {
-  if (!res.ok) throw new Error("Network response error");
-  return res.json();
-})
-.then(res => {
-  const d = res.record;
-
-
-  const bg = document.getElementById("bgImage");
-if (d.background && bg) {
-  bg.style.backgroundImage = `url(${d.background})`;
+function escapeHtml(str) {
+  return String(str || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
+function renderLinks(links) {
+  elLinks.innerHTML = "";
 
-  /* ===============================
-     HERO CONTENT
-  ================================= */
-
-  // TITLE
-  if (d.title) {
-    elTitle.textContent = d.title;
+  if (!Array.isArray(links) || links.length === 0) {
+    elLinks.innerHTML = `
+      <div class="empty-links">
+        Tidak ada link tersedia
+      </div>
+    `;
+    return;
   }
 
-  // SUBTITLE / DESCRIPTION
+  links.forEach((link, index) => {
+    const a = document.createElement("a");
+    a.href = link.url || "#";
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.className = "link" + (index === 0 ? " primary" : "");
+
+    const iconHtml = link.icon
+      ? `<img src="${escapeHtml(link.icon)}" alt="">`
+      : "";
+
+    a.innerHTML = `
+      ${iconHtml}
+      <span>${escapeHtml(link.label || link.title || "Link")}</span>
+    `;
+
+    a.style.opacity = "0";
+    a.style.transform = "translateY(8px)";
+    a.style.animation = "fadeUp .4s ease forwards";
+    a.style.animationDelay = `${index * 0.08}s`;
+
+    elLinks.appendChild(a);
+  });
+}
+
+function applyData(d) {
+  if (!d) return;
+
+  if (d.title) {
+    elTitle.textContent = d.title;
+    document.title = `${d.title} | Trusted Gaming Rekber`;
+
+    if (elNoticeBrand) elNoticeBrand.textContent = d.title;
+    if (elFooterBrand) elFooterBrand.textContent = d.title;
+  }
+
   if (d.subtitle) {
     elSubtitle.textContent = d.subtitle;
   }
 
-  // AVATAR / LOGO
   if (d.avatar) {
     elAvatar.src = d.avatar;
   }
 
-  /* ===============================
-     LINKS SECTION
-  ================================= */
+  if (d.background && elBgImage) {
+    elBgImage.style.backgroundImage = `url("${d.background}")`;
+  }
 
-  elLinks.innerHTML = "";
+  renderLinks(d.links);
+}
 
-  if (Array.isArray(d.links) && d.links.length > 0) {
-    d.links.forEach((link, index) => {
-
-      const a = document.createElement("a");
-      a.href = link.url || "#";
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.className = "link" + (index === 0 ? " primary" : "");
-
-      a.innerHTML = `
-        ${link.icon ? `<img src="${link.icon}" alt="">` : ""}
-        <span>${link.label || "Link"}</span>
-      `;
-
-      // MICRO ANIMATION (STAGGER)
-      a.style.opacity = "0";
-      a.style.transform = "translateY(8px)";
-      a.style.animation = `fadeUp .4s ease forwards`;
-      a.style.animationDelay = `${index * 0.08}s`;
-
-      elLinks.appendChild(a);
+async function loadData() {
+  try {
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+      headers: {
+        "X-Master-Key": API_KEY
+      }
     });
-  } else {
+
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
+
+    const json = await res.json();
+    const data = json.record;
+
+    applyData(data);
+  } catch (err) {
+    console.error("❌ Gagal memuat data:", err);
+
     elLinks.innerHTML = `
-      <div style="
-        text-align:center;
-        opacity:.7;
-        font-size:13px;
-        padding:20px
-      ">
-        Tidak ada link tersedia
+      <div class="empty-links">
+        ❌ Gagal memuat data
       </div>
     `;
   }
-})
-.catch(err => {
-  console.error("❌ Gagal memuat data:", err);
-  elLinks.innerHTML = `
-    <div style="
-      text-align:center;
-      opacity:.7;
-      font-size:13px;
-      padding:20px
-    ">
-      ❌ Gagal memuat data
-    </div>
-  `;
-});
+}
 
-/* ===============================
-   ANIMATION SUPPORT
-================================= */
 const style = document.createElement("style");
 style.innerHTML = `
 @keyframes fadeUp {
@@ -126,3 +128,5 @@ style.innerHTML = `
 }
 `;
 document.head.appendChild(style);
+
+loadData();
