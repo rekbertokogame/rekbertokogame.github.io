@@ -1,17 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;600&display=swap');
 
 :root {
-  --red: #00f0ff;
-  --dark-red: #001f4d;
+  --red: #ff2b2b;
+  --red-strong: #ff1e1e;
+  --dark-red: #2a0000;
   --black: #050000;
-  --border: rgba(0, 240, 255, 0.35);
-  --glow: rgba(0, 240, 255, 0.6);
+  --border: rgba(255, 43, 43, 0.35);
+  --glow: rgba(255, 43, 43, 0.55);
+  --text-soft: #ffd0d0;
 }
 
 /* ===============================
    RESET & BASE
 ================================ */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -22,50 +26,45 @@ body {
 }
 
 /* ===============================
-   BACKGROUND STACK (GAMING CYBER)
+   BACKGROUND STACK
 ================================ */
 
-/* 1) IMAGE (DINAMIS DARI ADMIN) */
 .bg-image {
   position: fixed;
   inset: 0;
   z-index: 0;
-  background:
-    url("");
+  background: url("");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: saturate(1.1) contrast(1.05);
+  filter: saturate(1.05) contrast(1.02) brightness(0.5);
   animation: bgDrift 36s linear infinite;
 }
 
-/* gerak pelan ala gaming case */
 @keyframes bgDrift {
   0%   { background-position: 50% 50%; transform: scale(1); }
   50%  { background-position: 52% 48%; transform: scale(1.03); }
   100% { background-position: 50% 50%; transform: scale(1); }
 }
 
-/* 2) GRADIENT MERAH–HITAM */
 .bg-gradient {
   position: fixed;
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(circle at top, rgba(0,240,255,.18), transparent 55%),
-    linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,20,55,.85));
+    radial-gradient(circle at top, rgba(255, 35, 35, 0.28), transparent 38%),
+    linear-gradient(180deg, rgba(20, 0, 0, 0.55), rgba(45, 0, 0, 0.82) 45%, rgba(0, 0, 0, 0.92) 100%);
 }
 
-/* 3) GRID CYBER */
 .grid {
   position: fixed;
   inset: 0;
   z-index: 2;
   background-image:
-    linear-gradient(rgba(255,30,30,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,30,30,.05) 1px, transparent 1px);
+    linear-gradient(rgba(255, 40, 40, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 40, 40, 0.06) 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity: .25;
+  opacity: .22;
   animation: gridMove 18s linear infinite;
 }
 
@@ -74,7 +73,6 @@ body {
   to   { background-position: 40px 40px, 40px 40px; }
 }
 
-/* 4) SCANLINE */
 .scanline {
   position: fixed;
   inset: 0;
@@ -83,9 +81,10 @@ body {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(255,30,30,.05) 50%,
+    rgba(255, 40, 40, 0.05) 50%,
     transparent 100%
   );
+  background-size: 100% 180px;
   animation: scan 6s linear infinite;
 }
 
@@ -94,16 +93,15 @@ body {
   to   { background-position: 0 100vh; }
 }
 
-/* 5) PARTICLES (CSS ONLY, RINGAN) */
 .particles {
   position: fixed;
   inset: 0;
   z-index: 4;
   pointer-events: none;
   background:
-    radial-gradient(circle, rgba(255,30,30,.25) 1px, transparent 1px);
+    radial-gradient(circle, rgba(255, 45, 45, 0.22) 1px, transparent 1px);
   background-size: 120px 120px;
-  opacity: .25;
+  opacity: .22;
   animation: particles 22s linear infinite;
 }
 
@@ -120,13 +118,15 @@ body {
   z-index: 5;
   max-width: 420px;
   margin: auto;
-  padding: 16px 16px 44px;
+  padding: 18px 16px 44px;
 }
 
 /* ===============================
    HERO
 ================================ */
-.hero { text-align: center; }
+.hero {
+  text-align: center;
+}
 
 .hero-logo {
   position: relative;
@@ -148,7 +148,8 @@ body {
   border-radius: 50%;
   border: 3px solid var(--red);
   object-fit: cover;
-  background: #000;
+  background: #120000;
+  box-shadow: 0 0 24px rgba(255, 43, 43, 0.25);
 }
 
 .hero-glow {
@@ -157,14 +158,14 @@ body {
   border-radius: 50%;
   background: var(--red);
   filter: blur(28px);
-  opacity: .45;
+  opacity: .38;
   animation: pulse 2.8s ease-in-out infinite;
   z-index: -1;
 }
 
 @keyframes pulse {
-  0%,100% { opacity: .35; }
-  50% { opacity: .6; }
+  0%, 100% { opacity: .30; }
+  50% { opacity: .58; }
 }
 
 .hero-title {
@@ -175,48 +176,54 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(255, 43, 43, 0.22);
 }
 
-/* VERIFIED BADGE (IMG SVG) */
 .verified-ig {
   width: 24px;
   height: 24px;
   margin-top: 1px;
   flex-shrink: 0;
   filter:
-    drop-shadow(0 0 3px rgba(0,240,255,.45))
-    drop-shadow(0 0 6px rgba(0,240,255,.25));
+    drop-shadow(0 0 3px rgba(255, 43, 43, 0.35))
+    drop-shadow(0 0 6px rgba(255, 43, 43, 0.20));
 }
 
 .hero-tag {
+  margin-bottom: 8px;
   font-size: 11px;
   letter-spacing: 2px;
-  color: #ffb3b3;
-  margin-bottom: 10px;
+  color: #ffb0b0;
 }
 
 .hero-desc {
   font-size: 13px;
-  line-height: 1.55;
-  opacity: .85;
-  margin-bottom: 14px;
+  line-height: 1.6;
+  opacity: .92;
+  color: #f1d8d8;
+  margin-bottom: 12px;
 }
 
-/* TRUST BADGES */
+/* ===============================
+   BADGES
+================================ */
 .badges {
   display: flex;
   justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
   font-size: 10px;
+  margin-bottom: 4px;
 }
 
 .badges span {
-  padding: 6px 10px;
+  padding: 7px 11px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: rgba(0,10,25,.55);
+  background: rgba(45, 0, 0, 0.55);
+  box-shadow: 0 0 12px rgba(255, 43, 43, 0.08);
 }
 
 /* ===============================
@@ -237,47 +244,45 @@ body {
 /* ===============================
    LINKS
 ================================ */
-.link{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  gap:14px;
-  padding:18px 20px;
-  border-radius:18px;
-
-  text-decoration:none;
-  color:#fff;
-  font-weight:800;
-
-  border:2px solid rgba(0,240,255,.85);
-  background: rgba(0,0,0,.55);
-
-  box-shadow: 0 0 18px rgba(0,240,255,.45);
-  transition: .2s ease;
-  backdrop-filter: blur(4px);
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.links{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+  border: 2px solid rgba(255, 43, 43, 0.75);
+  background: rgba(20, 0, 0, 0.56);
+  box-shadow: 0 0 18px rgba(255, 43, 43, 0.22);
+  transition: .22s ease;
+  backdrop-filter: blur(6px);
 }
 
-.link:hover{
-  transform:none;              /* biar kayak lama */
-  background:#001f4d;          /* hover solid biru */
-  box-shadow: 0 0 26px rgba(0,240,255,.55);
+.link:hover {
+  transform: translateY(-1px);
+  background: rgba(58, 0, 0, 0.82);
+  box-shadow: 0 0 24px rgba(255, 43, 43, 0.32);
 }
 
-/* tombol pertama highlight */
-.link.primary{
-  border:2px solid rgba(0,240,255,1);
-  box-shadow: 0 0 26px rgba(0,240,255,.65);
+.link.primary {
+  border: 2px solid rgba(255, 43, 43, 1);
+  box-shadow: 0 0 26px rgba(255, 43, 43, 0.38);
 }
 
-.link span, .link p, .link .text{
-  flex:1;
-  text-align:left;
+.link span,
+.link p,
+.link .text {
+  flex: 1;
+  text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -288,6 +293,15 @@ body {
   height: 26px;
 }
 
+.empty-links {
+  text-align: center;
+  opacity: .75;
+  font-size: 13px;
+  padding: 20px;
+  border: 1px solid rgba(255, 43, 43, 0.28);
+  border-radius: 18px;
+  background: rgba(20, 0, 0, 0.42);
+}
 
 /* ===============================
    NOTICE & FOOTER
@@ -296,50 +310,34 @@ body {
   margin-top: 26px;
   text-align: center;
   font-size: 11px;
-  opacity: .7;
+  line-height: 1.6;
+  opacity: .82;
+  color: var(--text-soft);
 }
 
 .footer {
   margin-top: 30px;
   text-align: center;
   font-size: 11px;
-  opacity: .6;
+  line-height: 1.6;
+  opacity: .65;
+  color: #e0b4b4;
 }
 
 /* ===============================
    MOBILE
 ================================ */
 @media (max-width: 360px) {
-  .hero-title { font-size: 22px; }
-  .hero-logo { width: 100px; height: 100px; }
+  .hero-title {
+    font-size: 22px;
+  }
+
+  .hero-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .link {
+    padding: 16px 16px;
+  }
 }
-
-
-.hero-title{
-  margin: 10px 0 4px;
-}
-
-.hero-tag{
-  margin-bottom: 4px;
-}
-
-.hero-desc{
-  margin-bottom: 6px;
-}
-
-.badges{
-  margin-bottom: 4px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
