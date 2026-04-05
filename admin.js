@@ -3,8 +3,8 @@
 // ===============================
 
 // ====== GANTI PUNYA KAMU ======
-const BIN_ID = "ISI_BIN_ID_KAMU";
-const API_KEY = "ISI_API_KEY_KAMU";
+const BIN_ID = "69d1f30236566621a87e15a8";
+const API_KEY = "$2a$10$CLLq1Bg7g2u726GLpRCVUuKOBsg/roXfp2eyTLehLpC241DeevMoG";
 // ==============================
 
 let data = null;
