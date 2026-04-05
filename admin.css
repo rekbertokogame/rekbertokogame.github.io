@@ -1,0 +1,145 @@
+:root {
+  --red: #ff1e1e;
+  --black: #050000;
+  --card: #120000;
+  --border: rgba(255, 30, 30, 0.35);
+  --text: #ffffff;
+  --muted: #ffb3b3;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #050000, #0a0000);
+  color: var(--text);
+}
+
+/* HEADER */
+.top {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.top h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.top span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* WRAP */
+.wrap {
+  padding: 16px;
+  padding-bottom: 60px;
+  max-width: 520px;
+  margin: auto;
+}
+
+/* CARD */
+.card {
+  background: linear-gradient(180deg, #160000, #0c0000);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 24px rgba(255, 0, 0, 0.2);
+}
+
+.card h2 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  color: var(--red);
+}
+
+/* FORM */
+label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #070000;
+  color: #fff;
+}
+
+/* LINK ITEM */
+.link-item {
+  background: #070000;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.link-item small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit { background: #ff9800; color: #000; }
+.delete { background: #ff3b3b; color: #fff; }
+
+/* BUTTON */
+.btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add {
+  background: transparent;
+  border: 2px dashed var(--red);
+  color: var(--red);
+}
+
+.save-main {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #ff1e1e, #7a0000);
+  color: #fff;
+}
+
+/* TOAST */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #160000;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  opacity: 0;
+  transition: .3s;
+}
