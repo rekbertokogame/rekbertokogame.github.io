@@ -2,11 +2,6 @@
 // REKBER.TOKOGAME - LANDING PAGE SCRIPT
 // =======================================
 
-// ====== GANTI PUNYA KAMU ======
-const BIN_ID = "69d1f30236566621a87e15a8";
-const API_KEY = "$2a$10$CLLq1Bg7g2u726GLpRCVUuKOBsg/roXfp2eyTLehLpC241DeevMoG";
-// ==============================
-
 const elTitle = document.getElementById("title");
 const elSubtitle = document.getElementById("subtitle");
 const elAvatar = document.getElementById("avatar");
@@ -100,16 +95,6 @@ async function loadData() {
     applyData(data);
   } catch (err) {
     console.error("❌ Gagal memuat links.json:", err);
-    elLinks.innerHTML = `
-      <div class="empty-links">
-        ❌ Gagal memuat data
-      </div>
-    `;
-  }
-}
-
-loadData();
-
     elLinks.innerHTML = `
       <div class="empty-links">
         ❌ Gagal memuat data
