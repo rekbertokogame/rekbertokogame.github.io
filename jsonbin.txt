@@ -1,0 +1,4 @@
+// ====== GANTI PUNYA KAMU ======
+const BIN_ID = "6991b633d0ea881f40bc22eb";
+const API_KEY = "$2a$10$CRpUuQhcfh0vNYFxICLlwO7LrdzbWhCKwXJKD44is4DkVq8SjXv8G";
+// ==============================
