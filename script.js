@@ -1,7 +1,3 @@
-// =======================================
-// REKBER.TOKOGAME - LANDING PAGE SCRIPT
-// =======================================
-
 const elTitle = document.getElementById("title");
 const elSubtitle = document.getElementById("subtitle");
 const elAvatar = document.getElementById("avatar");
