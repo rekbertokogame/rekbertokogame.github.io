@@ -1,0 +1,23 @@
+{
+  "title": "REKBER.TOKOGAME",
+  "subtitle": "Trusted Gaming & Digital Escrow",
+  "avatar": "https://via.placeholder.com/200x200.png?text=LOGO",
+  "background": "https://images.unsplash.com/photo-1542751371-adc38448a05e",
+  "links": [
+    {
+      "label": "WhatsApp Admin",
+      "url": "https://wa.me/6281234567890",
+      "icon": "https://cdn-icons-png.flaticon.com/512/733/733585.png"
+    },
+    {
+      "label": "Telegram Official",
+      "url": "https://t.me/usernamekamu",
+      "icon": "https://cdn-icons-png.flaticon.com/512/2111/2111646.png"
+    },
+    {
+      "label": "Instagram Store",
+      "url": "https://instagram.com/usernamekamu",
+      "icon": "https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+    }
+  ]
+}
